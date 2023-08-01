@@ -1,0 +1,19 @@
+- name: Multi action basic
+  hosts: all
+  sources:
+    - ansible.eda.range:
+        limit: 6
+        delay: 0.5
+
+  rules:
+    - name: Match on 1
+      condition: event.i == 1
+      action:
+        print_event:
+    - name: Match on 5
+      condition: event.i == 5
+      actions:
+        - print_event:
+        - debug:
+            msg: "Good night"
+
