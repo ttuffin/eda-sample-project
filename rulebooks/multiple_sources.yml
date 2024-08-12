@@ -1,0 +1,34 @@
+---
+- name: Rulebook with multiple sources
+  hosts: all
+  sources:
+    - ansible.eda.generic:
+        event_delay: 5
+        payload:
+          - i: 1
+          - i: 4
+          - i: 5
+    - name: my named source
+      ansible.eda.generic:
+        event_delay: 1
+        payload:
+          - i: 2
+          - i: 3
+    - ansible.eda.generic:
+        event_delay: 6
+        payload:
+          - i: 6
+
+  rules:
+    - name: Check i is 1
+      condition: event.i == 1
+      action:
+        print_event:
+    - name: Check i is 3
+      condition: event.i == 3
+      action:
+        print_event:
+    - name: Check i is 6
+      condition: event.i == 6
+      action:
+        print_event:
