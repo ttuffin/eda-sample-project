@@ -6,7 +6,7 @@
         port: 5000
   rules:
     - name: Dynatrace event
-      condition: event.title is defined
+      condition: event.payload.title is defined
       action:
         print_event:
 
