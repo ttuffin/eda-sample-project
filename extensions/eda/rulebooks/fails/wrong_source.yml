@@ -9,3 +9,4 @@
       condition: event.i == 2
       action:
         debug:
+          msg: "debug me"
